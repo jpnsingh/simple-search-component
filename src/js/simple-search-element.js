@@ -1,12 +1,23 @@
+import { searchTemplate } from "./search-template.js";
+
 export class SimpleSearchElement extends HTMLElement {
 
     constructor() {
         super();
     }
 
+    connectedCallback() {
+        console.log('SimpleSearchElement added to page.');
+        this.render();
+        // this.updateStyle(this);
+    }
+
     render() {
+        const div = document.createElement('div');
+        div.innerHTML = searchTemplate;
+        document.body.append(div);
         const shadow = this.attachShadow({ mode: "open" });
-        const style = document.createElement("style");
+        // const style = document.createElement("style");
         // shadow.appendChild(style);
         // shadow.appendChild(this.createSearchInput());
         const searchInput = document.getElementById('search-template');
@@ -22,12 +33,6 @@ export class SimpleSearchElement extends HTMLElement {
                 padding: 6px;
             }
         `;
-    }
-
-    connectedCallback() {
-        console.log('SimpleSearchElement added to page.');
-        this.render();
-        // this.updateStyle(this);
     }
 
     disconnectedCallback() {
