@@ -1,0 +1,26 @@
+{
+  "name": "simple-search-component",
+  "version": "1.0.0",
+  "description": "A reusable web component to apply searches on lists",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpnsingh/simple-search-component.git"
+  },
+  "author": "jpnsingh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpnsingh/simple-search-component/issues"
+  },
+  "homepage": "https://github.com/jpnsingh/simple-search-component#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
