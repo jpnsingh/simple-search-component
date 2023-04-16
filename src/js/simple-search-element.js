@@ -1,20 +1,16 @@
 export class SimpleSearchElement extends HTMLElement {
+
     constructor() {
         super();
     }
 
     render() {
-        const searchInput = document.createElement('INPUT');
-        searchInput.setAttribute('type', 'text');
-        searchInput.setAttribute('placeholder', 'Search...');
-        searchInput.classList.add('simple-search-input');
         const shadow = this.attachShadow({ mode: "open" });
         const style = document.createElement("style");
-        shadow.appendChild(style);
-        shadow.appendChild(searchInput);
-        
-        // const searchInput = document.getElementById('search-template');
-        // shadow.appendChild(searchInput.content.cloneNode(true));
+        // shadow.appendChild(style);
+        // shadow.appendChild(this.createSearchInput());
+        const searchInput = document.getElementById('search-template');
+        shadow.appendChild(searchInput.content.cloneNode(true));
     }
 
     updateStyle(elem) {
@@ -31,11 +27,7 @@ export class SimpleSearchElement extends HTMLElement {
     connectedCallback() {
         console.log('SimpleSearchElement added to page.');
         this.render();
-        this.updateStyle(this);
-        // if (!this.rendered) {
-        //     this.render();
-        //     this.rendered = true;
-        //   }
+        // this.updateStyle(this);
     }
 
     disconnectedCallback() {
@@ -52,5 +44,14 @@ export class SimpleSearchElement extends HTMLElement {
 
     adoptedCallback() {
 
+    }
+
+    createSearchInput() {
+        const searchInput = document.createElement('INPUT');
+        searchInput.setAttribute('type', 'text');
+        searchInput.setAttribute('placeholder', 'Search...');
+        searchInput.classList.add('simple-search-input');
+
+        return searchInput;
     }
 }
