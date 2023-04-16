@@ -1,5 +1,3 @@
-import { searchTemplate } from "./search-template.js";
-
 export class SimpleSearchElement extends HTMLElement {
 
     constructor() {
@@ -8,18 +6,17 @@ export class SimpleSearchElement extends HTMLElement {
 
     connectedCallback() {
         console.log('SimpleSearchElement added to page.');
-        this.render();
-        // this.updateStyle(this);
+        fetch("search-template.html")
+            .then(stream => stream.text())
+            .then(template => this.render(template))
+            .catch((error) => console.log(error));
     }
 
-    render() {
+    render(template) {
         const div = document.createElement('div');
-        div.innerHTML = searchTemplate;
+        div.innerHTML = template;
         document.body.append(div);
         const shadow = this.attachShadow({ mode: "open" });
-        // const style = document.createElement("style");
-        // shadow.appendChild(style);
-        // shadow.appendChild(this.createSearchInput());
         const searchInput = document.getElementById('search-template');
         shadow.appendChild(searchInput.content.cloneNode(true));
     }
@@ -60,3 +57,5 @@ export class SimpleSearchElement extends HTMLElement {
         return searchInput;
     }
 }
+
+customElements.define('simple-search-element', SimpleSearchElement);
