@@ -6,7 +6,7 @@ export class SimpleSearchElement extends HTMLElement {
 
     connectedCallback() {
         console.log('SimpleSearchElement added to page.');
-        fetch("search-template.html")
+        fetch("simple-search-element.html")
             .then(stream => stream.text())
             .then(template => this.render(template))
             .catch((error) => console.log(error));
