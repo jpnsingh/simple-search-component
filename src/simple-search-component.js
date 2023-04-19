@@ -1,12 +1,12 @@
-export class SimpleSearchElement extends HTMLElement {
+export class SimpleSearchComponent extends HTMLElement {
 
     constructor() {
         super();
     }
 
     connectedCallback() {
-        console.log('SimpleSearchElement added to page.');
-        fetch("simple-search-element.html")
+        console.log('SimpleSearchComponent added to page.');
+        fetch("simple-search-component.html")
             .then(stream => stream.text())
             .then(template => this.render(template))
             .catch((error) => console.log(error));
@@ -33,7 +33,7 @@ export class SimpleSearchElement extends HTMLElement {
     }
 
     disconnectedCallback() {
-        console.log('SimpleSearchElement removed from the page.');
+        console.log('SimpleSearchComponent removed from the page.');
     }
 
     static get observedAttributes() {
@@ -58,4 +58,4 @@ export class SimpleSearchElement extends HTMLElement {
     }
 }
 
-customElements.define('simple-search-element', SimpleSearchElement);
+customElements.define('simple-search-component', SimpleSearchComponent);
