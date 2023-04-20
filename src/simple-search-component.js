@@ -12,13 +12,12 @@ export class SimpleSearchComponent extends HTMLElement {
             .catch((error) => console.log(error));
     }
 
-    render(template) {
-        const div = document.createElement('div');
-        div.innerHTML = template;
-        document.body.append(div);
-        const shadow = this.attachShadow({ mode: "open" });
-        const searchInput = document.getElementById('search-template');
-        shadow.appendChild(searchInput.content.cloneNode(true));
+    render(templateHtml) {
+        // const template = document.createElement('template');
+        // template.innerHTML = templateHtml;
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        // shadowRoot.appendChild(template.content.cloneNode(true));
+        shadowRoot.innerHTML = templateHtml;
     }
 
     updateStyle(elem) {
