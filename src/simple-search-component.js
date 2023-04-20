@@ -13,22 +13,24 @@ export class SimpleSearchComponent extends HTMLElement {
     }
 
     render(templateHtml) {
-        // const template = document.createElement('template');
-        // template.innerHTML = templateHtml;
         const shadowRoot = this.attachShadow({ mode: "open" });
-        // shadowRoot.appendChild(template.content.cloneNode(true));
         shadowRoot.innerHTML = templateHtml;
+        this.bindSearchEvent(shadowRoot.querySelector('.simple-search-input'));
     }
 
-    updateStyle(elem) {
-        const shadow = elem.shadowRoot;
-        shadow.querySelector("style").textContent = `
-            input {
-                box-sizing: border-box;
-                width: 100%;
-                padding: 6px;
-            }
-        `;
+    bindSearchEvent(searchElem) {
+        document.addEventListener('custom-search-change', event => {
+            console.log(`Captured custom-search-change : ${event.target}`);
+            console.log(event.target.value);
+        });
+        searchElem.addEventListener('change', event => {
+            console.log(event);
+            searchElem.dispatchEvent(new CustomEvent('custom-search-change', {
+                bubbles: true,
+                composed: true,
+                detail: "composed"
+            }));
+        });
     }
 
     disconnectedCallback() {
@@ -45,15 +47,6 @@ export class SimpleSearchComponent extends HTMLElement {
 
     adoptedCallback() {
 
-    }
-
-    createSearchInput() {
-        const searchInput = document.createElement('INPUT');
-        searchInput.setAttribute('type', 'text');
-        searchInput.setAttribute('placeholder', 'Search...');
-        searchInput.classList.add('simple-search-input');
-
-        return searchInput;
     }
 }
 
