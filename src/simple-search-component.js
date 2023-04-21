@@ -15,20 +15,15 @@ export class SimpleSearchComponent extends HTMLElement {
     render(templateHtml) {
         const shadowRoot = this.attachShadow({ mode: "open" });
         shadowRoot.innerHTML = templateHtml;
-        this.bindSearchEvent(shadowRoot.querySelector('.simple-search-input'));
+        this.dispatchCustomSearchEvent(shadowRoot.querySelector('.simple-search-input'));
     }
 
-    bindSearchEvent(searchElem) {
-        document.addEventListener('custom-search-change', event => {
-            console.log(`Captured custom-search-change : ${event.target}`);
-            console.log(event.target.value);
-        });
+    dispatchCustomSearchEvent(searchElem) {
         searchElem.addEventListener('change', event => {
-            console.log(event);
-            searchElem.dispatchEvent(new CustomEvent('custom-search-change', {
+            searchElem.dispatchEvent(new CustomEvent('custom-search', {
                 bubbles: true,
                 composed: true,
-                detail: "composed"
+                detail: {searchTerm: searchElem.value, event}
             }));
         });
     }
