@@ -19,8 +19,6 @@ export class SimpleSearchComponent extends HTMLElement {
     }
 
     bindEvents(shadowRoot) {
-        document.addEventListener('custom-search-clear', event => console.log(event.detail));
-
         const searchInput = shadowRoot.querySelector('.simple-search-input');
         const clearSearch = shadowRoot.querySelector('.clear-search');
 
