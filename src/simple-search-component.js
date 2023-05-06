@@ -19,7 +19,7 @@ export class SimpleSearchComponent extends HTMLElement {
     }
 
     bindEvents(shadowRoot) {
-        document.addEventListener('custom-search-clear', event => console.log(event.detail));
+        shadowRoot.querySelector('.simple-search-input').setAttribute('placeholder', this.getAttribute('placeholder'));
 
         const searchInput = shadowRoot.querySelector('.simple-search-input');
         const clearSearch = shadowRoot.querySelector('.clear-search');
@@ -60,7 +60,7 @@ export class SimpleSearchComponent extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-
+        
     }
 
     adoptedCallback() {
